@@ -1,3 +1,17 @@
 .test{
     text-align:center;
 }
+.main{
+    background-color: #152759;
+    height: 100vh;
+    color: white;
+
+}
+*{
+    font-family: 'Nunito', sans-serif;
+        
+    }
+.HomeSvg{
+    height: 10rem;
+}
+
