@@ -1,3 +1,38 @@
-.test{
-    text-align:center;
+* {
+    font-family: 'Nunito', sans-serif;
+}
+
+.main {
+    /* background-color: #152759; */
+    background: linear-gradient(60deg, #33265b 0%, #002856 100%);
+    height: 100vh;
+    color: white;
+}
+
+.landing_text {
+    font-size: 4vw;
+    padding-top: 50px;
+    line-height: 120%;
+}
+
+.HomeSvg {
+    width: 100%;
+    height: auto;
+}
+
+/* landing text animation slide */
+
+.animation_main {
+    animation: slideInFromBottom 1s ease-out 0s 1;
+}
+
+@keyframes slideInFromBottom {
+    0% {
+        transform: translateY(40%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
