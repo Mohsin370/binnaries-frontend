@@ -8,7 +8,7 @@ function Home() {
   return (
     <div className={styles.main}>
       <Navbar></Navbar>
-      <div className="row m-auto p-5 mt-5">
+      <div className="row m-auto p-5">
         <div className={ [styles.animation_main, "col-md-6 text-center"].join(" ")}>
           <div className={styles.landing_text}>Grow & Manage Business</div>
           <h4 className="m-auto w-75 pt-5">Binaries is a platform where you can manage your business
