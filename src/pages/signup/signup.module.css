@@ -1,0 +1,15 @@
+.signupContainer{
+    background-color: #f4f4f4;
+    height: 100vh;
+    display: flex; /* to center the div */
+}
+.signupCardMain{
+    width: 75%;
+    height: 75%;
+    margin: auto;
+    background-color: teal;
+}
+
+.signupImg{
+    width: 100%;
+}

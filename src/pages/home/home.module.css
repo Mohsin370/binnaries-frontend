@@ -11,13 +11,12 @@
 
 .landing_text {
     font-size: 4vw;
-    padding-top: 35px;
     line-height: 120%;
 }
 
-.HomeSvg {
-    width: 500px;
-    height: 500px;
+.homeText {
+    padding-top: 10%;
+
 }
 
 /* landing text animation slide */
