@@ -20,25 +20,6 @@ function Home() {
           <img src={HomeSVG} className={styles.HomeSvg} alt="business Logo" />
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-3 mr-4">
-          <div>
-
-          </div>
-        </div>
-
-        <div class="col-md-3 mr-4">
-          <div>
-
-          </div>
-        </div>
-
-        <div class="col-md-3 mr-4">
-          <div>
-
-          </div>
-        </div>
-      </div>
     </div>
   )
 }
