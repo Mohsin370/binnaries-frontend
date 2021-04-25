@@ -10,7 +10,7 @@ function Navbar() {
         <div>
           <ul className={[styles.nav_links_animation, "d-flex list-unstyled pr-5 pt-2"].join(' ')}>
             <Link to="/dashboard" className={styles.home_links}>Dashboard</Link>
-            <Link to="/signup" className={[styles.home_links, "ml-4"].join(' ')}>Login</Link>
+            <Link to="/login" className={[styles.home_links, "ml-4"].join(' ')}>Login</Link>
           </ul>
         </div>
       </div>
