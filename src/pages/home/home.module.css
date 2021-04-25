@@ -15,8 +15,12 @@
 }
 
 .homeText {
-    padding-top: 10%;
+    padding-top: 7%;
 
+}
+.HomeSvg{
+    width: 90%;
+    height: auto;
 }
 
 /* landing text animation slide */

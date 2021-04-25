@@ -23,7 +23,7 @@ function Home() {
           <img src={HomeSVG} className={styles.HomeSvg} alt="business Logo" />
         </div>
       </div>
-      <div className="text-center p-4">
+      <div className="text-center p-4 position-absolute fixed-bottom">
         <h5>Catch us on Social Media:</h5>
        <a href="https://www.facebook.com/khawaja.mohsin1/" target="_blank" without rel="noreferrer"> <img src={fbIcon} alt="fb"/> </a>
        <a href="https://www.linkedin.com/in/khawaja-mohsin-9a5b75125/" target="_blank" without rel="noreferrer"><img src={LinkedinIcon} alt="linkedin"/></a>
