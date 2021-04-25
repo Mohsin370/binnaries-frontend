@@ -7,6 +7,8 @@ function Routes() {
     <Router>
       <Switch>
         <Route path="/" exact> <Home></Home> </Route>
+        <Route path="/signup" exact> <Home></Home> </Route>
+        <Route path="/login" exact> <Home></Home> </Route>
         <Route path="/dashboard" exact> <Dashboard></Dashboard> </Route>
       </Switch>
     </Router>
