@@ -11,9 +11,10 @@ const Signup = () => {
             <div className={styles.signupContainer}>
                 <div className="w-75 h-75 m-auto bg-white">
                     <div className="row m-auto h-100">
-                        <div className="col-md-4 h-100" style= {{backgroundColor : "#168574"}}>
-                        <h5 className="pt-4 pl-2 text-white">Binaries</h5>
-
+                        <div className="col-md-4 h-100" style={{ backgroundColor: "#168574" }}>
+                            <h4 className="pt-4 pl-2 text-white">
+                                <Link className="text-decoration-none text-white" to="/"> Binaries </Link>
+                            </h4>
                             <h3 className="pt-5 pl-2 pb-4 text-white">A few clicks away from managing your businesses.</h3>
                             <img src={SignUpImage} className={styles.signupImg} alt="signup" />
                         </div>
@@ -60,11 +61,7 @@ const Signup = () => {
                                             <b>Already have an account?<Link to="/login" className="text-decoration-none pl-2">Login</Link></b>
                                         </h6>
                                     </div>
-
-
                                 </form>
-
-
                             </div>
                         </div>
                     </div>
