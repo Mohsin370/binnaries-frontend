@@ -1,0 +1,9 @@
+.NavLinksParent:hover{  
+    background-color: #143f95;
+    color: white !important;
+}
+.NavLinksParent{
+    border-radius: 10px;
+    width: 90%;
+    color: #7b90bb  !important;
+}
