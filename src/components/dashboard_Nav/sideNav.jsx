@@ -20,37 +20,37 @@ function sideNav() {
         <div className=" pt-3">
             <h4> <Link className={[navlinkClass,"text-white"].join(" ")} to="/"> Binaries </Link></h4>
             <Link className={[window.location.pathname === "/dashboard"?styles.activeLink:"",navlinkClass, styles.NavLinksParent,].join(" ")} to="/dashboard">
-                <h5 >
+                <h6 >
                     <FontAwesomeIcon icon={faHome} />
                     <span className="pl-3">  Dashboard </span>
-                </h5>
+                </h6>
             </Link>
             {/* Management */}
-            <div className="mt-5">
-                <p className=" mt-4 text-light pl-4">  Management </p>
+            <div className="mt-3">
+                <p className="text-light pl-4">  Management </p>
                 {
                     ManagementLinks.map((el) => {
                         return (
                             <Link className={[window.location.pathname === el.link?styles.activeLink:"",navlinkClass, styles.NavLinksParent].join(" ")} to={el.link}>
-                                <h5 >
+                                <h6 >
                                     <FontAwesomeIcon icon={el.icon} />
                                     <span className="pl-3">  {el.linkName} </span>
-                                </h5>
+                                </h6>
                             </Link>
                         )
                     })
                 }
             </div >
-            <div className="mt-5">
-                <p className=" mt-4 text-light pl-4">  Pages </p>
+            <div className="mt-3">
+                <p className="text-light pl-4">  Pages </p>
                 {
                     Pages.map((el) => {
                         return (
                             <Link className={[navlinkClass, styles.NavLinksParent].join(" ")} to={el.link}>
-                                <h5 >
+                                <h6 >
                                     <FontAwesomeIcon icon={el.icon} />
                                     <span className="pl-3">  {el.linkName} </span>
-                                </h5>
+                                </h6>
                             </Link>
                         )
                     })
