@@ -19,7 +19,7 @@ function sideNav() {
     return (
         <div className=" pt-3">
             <h4> <Link className={[navlinkClass,"text-white"].join(" ")} to="/"> Binaries </Link></h4>
-            <Link className={[navlinkClass, styles.NavLinksParent,].join(" ")} to="/dashboard">
+            <Link className={[window.location.pathname === "/dashboard"?styles.activeLink:"",navlinkClass, styles.NavLinksParent,].join(" ")} to="/dashboard">
                 <h5 >
                     <FontAwesomeIcon icon={faHome} />
                     <span className="pl-3">  Dashboard </span>
@@ -31,7 +31,7 @@ function sideNav() {
                 {
                     ManagementLinks.map((el) => {
                         return (
-                            <Link className={[navlinkClass, styles.NavLinksParent].join(" ")} to={el.link}>
+                            <Link className={[window.location.pathname === el.link?styles.activeLink:"",navlinkClass, styles.NavLinksParent].join(" ")} to={el.link}>
                                 <h5 >
                                     <FontAwesomeIcon icon={el.icon} />
                                     <span className="pl-3">  {el.linkName} </span>
