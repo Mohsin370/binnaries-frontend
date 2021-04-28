@@ -2,7 +2,8 @@ import React from "react";
 import styles from './dashboardHOC.module.css';
 import { connect } from 'react-redux';
 import { addCounter } from '../../redux/actions/actions';
-import SideNav from '../../components/dashboard_Nav/sideNav'
+import SideNav from '../../components/dashboard_Nav/sideNav';
+import DashboardTopNav from '../../components/dashboard_topNav/dashboardTopNav'
 
 let DashboardHOC = (OrignalComponent) => {
 
@@ -20,6 +21,7 @@ let DashboardHOC = (OrignalComponent) => {
             <SideNav></SideNav>
           </div>
           <div className="col-md-9 col-xl-10" style={{ backgroundColor: "#f3f7fa" }}>
+            <DashboardTopNav></DashboardTopNav>
             <OrignalComponent></OrignalComponent>
             {/* <div>{props.loginReducer.counter}</div>
             <button className="mt-5" onClick={updateCounter}>Add Counter</button> */}
