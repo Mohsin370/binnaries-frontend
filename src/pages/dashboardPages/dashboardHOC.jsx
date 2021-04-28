@@ -19,7 +19,7 @@ let DashboardHOC = (OrignalComponent) => {
           <div className="col-md-3 col-xl-2 p-0" style={{ backgroundColor: "#0d2e70" }}>
             <SideNav></SideNav>
           </div>
-          <div className="col-md-9 col-xl-10">
+          <div className="col-md-9 col-xl-10" style={{ backgroundColor: "#f3f7fa" }}>
             <OrignalComponent></OrignalComponent>
             {/* <div>{props.loginReducer.counter}</div>
             <button className="mt-5" onClick={updateCounter}>Add Counter</button> */}
