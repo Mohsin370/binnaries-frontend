@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import SignUpImage from '../../assets/images/signup.svg';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import {SignupAPi} from '../../api/api'
 
 
 const Signup = () => {
@@ -52,8 +53,13 @@ const Signup = () => {
         return errors;
     }
 
-    const submitForm = (formData) => {
-        alert(JSON.stringify(formData, null, 2));
+    const submitForm = async (formData) => {
+         SignupAPi(formData).then((res)=>{
+            console.log({res});
+        }).catch((err)=>{
+            console.log({err})
+        })
+
     }
 
     return (
