@@ -3,9 +3,32 @@ import styles from './login.module.css';
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import LoginImage from '../../assets/images/login.svg';
+import {LoginApi} from '../../api/api';
+import { useHistory } from "react-router";
 
 
 const Login = () => {
+    const history = useHistory();
+
+    const loginUser = () =>{
+        let formData={
+            email:"mohsinijaz13@gmail.com",
+            password:"mohsi"
+        }
+        LoginApi(formData).then((res)=>{
+            if(res.data.message === "success"){
+                history.push({
+                    pathname:  "/dashboard",
+                 });
+            }else if (res.data.message === "exists"){
+                console.log("user already exists")
+            }
+
+        }).catch((err)=>{
+            console.log({err})
+        })
+    }
+
     return (
         <div>
             <div className={styles.loginContainer}>
@@ -40,7 +63,7 @@ const Login = () => {
                                         </div>
                                     </div>
                                     <div className="m-auto text-center">
-                                        <Button className=" w-75"> Login</Button>
+                                        <Button className=" w-75" onClick={loginUser}> Login</Button>
                                         <h6 className="pt-3">
                                             <b>Don't have an account yet?<Link to="/signup" className="text-decoration-none pl-2">Join Binaries Today</Link></b>
                                         </h6>

@@ -4,10 +4,13 @@ import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import SignUpImage from '../../assets/images/signup.svg';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import {SignupAPi} from '../../api/api'
+import {SignupAPi} from '../../api/api';
+import { useHistory } from "react-router";
+
 
 
 const Signup = () => {
+    const history = useHistory();
 
     const [canSubmit, setcanSubmit] = useState(false);
 
@@ -55,7 +58,14 @@ const Signup = () => {
 
     const submitForm = async (formData) => {
          SignupAPi(formData).then((res)=>{
-            console.log({res});
+            if(res.data.message === "success"){
+                history.push({
+                    pathname:  "/login",
+                 });
+            }else if (res.data.message === "exists"){
+                console.log("user already exists")
+            }
+
         }).catch((err)=>{
             console.log({err})
         })
