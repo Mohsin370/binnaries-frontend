@@ -11,8 +11,23 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 const Login = () => {
     const history = useHistory();
 
+    const validation = (values) => {
+        const { email, password } = values;
+        const errors = {};
+        if (!email) {
+            errors.email = 'Required';
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
+            errors.email = 'Invalid email address';
+        }
+        if (!password) {
+            errors.password = 'Required';
+        }
+        return errors;
+
+    }
+
     const loginUser = (formData) => {
-    
+
         LoginApi(formData).then((res) => {
             if (res.data.message === "success") {
                 history.push({
@@ -47,6 +62,7 @@ const Login = () => {
                                 <hr></hr>
                                 <Formik
                                     initialValues={{ email: '', password: '' }}
+                                    validate={validation}
                                     onSubmit={loginUser}
 
                                 >
