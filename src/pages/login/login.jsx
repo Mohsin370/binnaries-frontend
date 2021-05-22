@@ -6,9 +6,12 @@ import LoginImage from '../../assets/images/login.svg';
 import { LoginApi } from '../../api/api';
 import { useHistory } from "react-router";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { connect } from 'react-redux';
+import { updateLoginState } from '../../redux/actions/actions';
 
 
-const Login = () => {
+
+const Login = (props) => {
     const history = useHistory();
 
     const validation = (values) => {
@@ -33,6 +36,7 @@ const Login = () => {
                 history.push({
                     pathname: "/dashboard",
                 });
+                props.updateRoutes(res.data)
             } else if (res.data.message === "exists") {
                 console.log("user already exists")
             }
@@ -76,7 +80,7 @@ const Login = () => {
                                             </div>
                                             <div className="col-md-12 mt-4">
                                                 <label className="d-block">Password</label>
-                                                <Field name="password" className="form-control" />
+                                                <Field type="password" name="password" className="form-control" />
                                                 <ErrorMessage name="password" component="div" className="text-danger" />
                                             </div>
                                             <div className="col-md-12 pt-4 mb-5">
@@ -101,4 +105,10 @@ const Login = () => {
     )
 }
 
-export default Login;
+
+const mapStateToProps = (state) => {
+    return state
+}
+
+
+export default connect(mapStateToProps,updateLoginState)(Login);

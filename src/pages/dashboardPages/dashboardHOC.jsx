@@ -1,7 +1,7 @@
 import React from "react";
 import styles from './dashboardHOC.module.css';
-import { connect } from 'react-redux';
-import { addCounter } from '../../redux/actions/actions';
+// import { connect } from 'react-redux';
+// import { addCounter } from '../../redux/actions/actions';
 import SideNav from '../../components/dashboard_Nav/sideNav';
 import DashboardTopNav from '../../components/dashboard_topNav/dashboardTopNav'
 

@@ -4,8 +4,11 @@ import SettingsSvg from '../../assets/icons/settings.svg';
 import notificationSvg from '../../assets/icons/notification.svg';
 import UserPlaceHolder from '../../assets/images/placeholder-user.png';
 import DownArrow from '../../assets/icons/down-arrow.svg';
+import { connect } from 'react-redux';
+import {logoutUser} from '../../redux/actions/actions'
 
-export default function DashboardTopNav() {
+
+function DashboardTopNav(props) {
     const [DropDownState, setDropDownState] = useState(false)
     const ToggleDropDown = () => {
         setDropDownState(!DropDownState);
@@ -18,6 +21,11 @@ export default function DashboardTopNav() {
             setDropDownState(!DropDownState);
         }
     }
+
+    const logout = () =>{
+        props.logout();
+    }
+
 
     return (
         <div>
@@ -46,7 +54,7 @@ export default function DashboardTopNav() {
                         <div className={styles.dropdown}>
                             <p>Profile</p>
                             <hr></hr>
-                            <p>Logout</p>
+                            <p type="button" onClick={logout}>Logout</p>
                         </div> : ""
                     }
                 </div>
@@ -54,3 +62,10 @@ export default function DashboardTopNav() {
         </div>
     )
 }
+
+
+const mapStateToProps = (state) => {
+    return state
+}
+
+export default connect(mapStateToProps,logoutUser)(DashboardTopNav);

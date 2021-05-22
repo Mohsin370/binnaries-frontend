@@ -9,7 +9,7 @@ function Navbar() {
         <div type="button" className={[styles.navbar_font, styles.nav_logo_animation, "ml-5 cursor-pointer"].join(' ')} >Binaries</div>
         <div>
           <ul className={[styles.nav_links_animation, "d-flex list-unstyled pr-5 pt-2"].join(' ')}>
-            <Link to="/dashboard" className={styles.home_links}>Dashboard</Link>
+            <Link to="/login" className={styles.home_links}>Dashboard</Link>
             <Link to="/login" className={[styles.home_links, "ml-4"].join(' ')}>Login</Link>
           </ul>
         </div>
