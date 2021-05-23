@@ -8,7 +8,6 @@ const loginState = {
 
 export const loginReducer = (state = loginState, action) => {
     if (action.type === "update Login State") {
-        console.log(action.data)
         localStorage.setItem("token",action.data.token);
         let newState = true;
         return {

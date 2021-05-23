@@ -6,12 +6,11 @@ import Signup from '../pages/signup/signup';
 import Login from '../pages/login/login';
 import Analytics from '../pages/dashboardPages/analytics/analytics';
 import Customers from '../pages/dashboardPages/customers/customers';
+import Accounts from '../pages/dashboardPages/accounts/accounts';
 import { connect } from 'react-redux';
 
 function Routes(props) {
-
   const token = localStorage.getItem("token");
-  console.log(props.loginReducer.isLoggedIn);
   console.log(token);
   return (
     <Router>
@@ -21,6 +20,7 @@ function Routes(props) {
           <Route path="/dashboard" exact> <Dashboard></Dashboard>  </Route>
           <Route path="/dashboard/Analytics" exact> <Analytics></Analytics> </Route>
           <Route path="/dashboard/Customers" exact> <Customers></Customers> </Route>
+          <Route path="/dashboard/Accounts" exact> <Accounts></Accounts> </Route>
           <Route render={() => <Redirect to="/dashboard" />} />
         </Switch>
         :

@@ -6,6 +6,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons'
 function sideNav() {
     let navlinkClass = "text-decoration-none  pt-3 pb-3 pl-4 row m-auto";
     let ManagementLinks = [
+        { linkName: "Accounts", link: "/dashboard/accounts", icon: faHome },
         { linkName: "Analytics", link: "/dashboard/analytics", icon: faHome },
         { linkName: "Customers", link: "/dashboard/customers", icon: faHome },
         { linkName: "Orders", link: "/login", icon: faHome },
