@@ -14,6 +14,6 @@ export const AddBankAccountAPi = (data) => {
   return Axios.post(`${environment.BaseURL}/accounts/addCard`, { data });
 };
 
-export const getAccounts = () => {
-  return Axios.get(`${environment.BaseURL}/accounts/getAccounts`);
+export const getAccounts = (token) => {
+  return Axios.get(`${environment.BaseURL}/accounts/getAccounts`,{params:{token}});
 };

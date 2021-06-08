@@ -12,7 +12,8 @@ function Accounts() {
   }
 
   useEffect(() => {
-    getAccounts().then((res) => {
+    const token = localStorage.getItem("token");
+    getAccounts(token).then((res) => {
       if (res.data.message === "success") {
 
       } else if (res.data.message === "exists") {
