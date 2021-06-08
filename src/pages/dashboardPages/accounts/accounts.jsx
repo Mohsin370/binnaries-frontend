@@ -6,6 +6,7 @@ import AccountCard from '../../../components/account_card/accountCard';
 import {getAccounts} from '../../../api/api';
 function Accounts() {
   const [show, setShow] = useState(false);
+  const [accountDetails, setAccountDetails] = useState();
 
   const closeModal = () => {
     setShow(false)
@@ -15,8 +16,9 @@ function Accounts() {
     const token = localStorage.getItem("token");
     getAccounts(token).then((res) => {
       if (res.data.message === "success") {
-
-      } else if (res.data.message === "exists") {
+         setAccountDetails(res.data.accounts)
+         console.log(accountDetails)
+        } else if (res.data.message === "exists") {
       }
 
     }).catch((err) => {
