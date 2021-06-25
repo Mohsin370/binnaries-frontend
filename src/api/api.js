@@ -1,6 +1,5 @@
-import { environment } from '../environments/environment';
-import Axios from 'axios';
-
+import { environment } from "../environments/environment";
+import Axios from "axios";
 
 export const LoginApi = (data) => {
   return Axios.post(`${environment.BaseURL}/users/login`, { data });
@@ -15,5 +14,11 @@ export const AddBankAccountAPi = (data) => {
 };
 
 export const getAccounts = (token) => {
-  return Axios.get(`${environment.BaseURL}/accounts/getAccounts`,{params:{token}});
+  return Axios.get(`${environment.BaseURL}/accounts/getAccounts`, {
+    params: { token },
+  });
+};
+
+export const deleteAccounts = (data) => {
+  return Axios.post(`${environment.BaseURL}/accounts/deleteAccounts`, { data });
 };

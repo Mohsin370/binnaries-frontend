@@ -1,44 +1,82 @@
-import React, { useState, useEffect } from 'react';
-import DashboardHOC from '../dashboardHOC';
-import { Button } from 'react-bootstrap';
-import AccountsModal from '../../../components/accounts_Modal/accountsModal';
-import AccountCard from '../../../components/account_card/accountCard';
-import {getAccounts} from '../../../api/api';
+import React, { useState, useEffect } from "react";
+import DashboardHOC from "../dashboardHOC";
+import { Button, Row } from "react-bootstrap";
+import AccountsModal from "../../../components/accounts_Modal/accountsModal";
+import AccountCard from "../../../components/account_card/accountCard";
+import { getAccounts, deleteAccounts } from "../../../api/api";
 function Accounts() {
   const [show, setShow] = useState(false);
-  const [accountDetails, setAccountDetails] = useState();
+  const [accountDetails, setAccountDetails] = useState([]);
 
   const closeModal = () => {
-    setShow(false)
-  }
+    setShow(false);
+  };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    getAccounts(token).then((res) => {
-      if (res.data.message === "success") {
-         setAccountDetails(res.data.accounts)
-         console.log(accountDetails)
-        } else if (res.data.message === "exists") {
-      }
+    getUserAccounts();
+  }, []);
 
-    }).catch((err) => {
-      console.log({ err })
-    })
-  }, [])
+  const getUserAccounts = () => {
+    const token = localStorage.getItem("token");
+    getAccounts(token)
+      .then((res) => {
+        if (res.data.message === "success") {
+          console.log(accountDetails);
+          setAccountDetails(res.data.accounts);
+        } else if (res.data.message === "exists") {
+        }
+      })
+      .catch((err) => {
+        console.log({ err });
+      });
+  };
+
+  const deleteCard = (id) => {
+    const token = localStorage.getItem("token");
+    const data = {
+      token,
+      id,
+    };
+    deleteAccounts(data)
+      .then((res) => {
+        if (res.data.message === "success") {
+          getUserAccounts();
+        } else if (res.data.message === "exists") {
+        }
+      })
+      .catch((err) => {
+        console.log({ err });
+      });
+  };
+  const editCard = (data) => {
+    console.log("edit Card with details: ", data);
+  };
 
   return (
     <div className="mt-3">
       <AccountsModal show={show} closeModal={closeModal}></AccountsModal>
       <h3 className="text-center">Manage your bank accounts here</h3>
       <div className="text-right m-4">
-        <Button onClick={() => setShow(true)} >Add Bank Account</Button>
+        <Button onClick={() => setShow(true)}>Add Bank Account</Button>
       </div>
-      <div className="mt-5 pt-5 ml-5">
-        <AccountCard cardNo="0291100686321010"></AccountCard>
-      </div>
+      <Row>
+        {accountDetails.map((res) => {
+          return (
+            <div className="mt-5 pt-5 ml-5">
+              <AccountCard
+                cardNo={res.card_no}
+                accTitle={res.acc_title}
+                bankName={res.bank_name}
+                accNo={res.acc_no}
+                deleteItem={() => deleteCard(res.id)}
+                editItem={() => editCard(res)}
+              ></AccountCard>
+            </div>
+          );
+        })}
+      </Row>
     </div>
-  )
+  );
 }
-
 
 export default DashboardHOC(Accounts);
