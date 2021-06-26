@@ -22,3 +22,7 @@ export const getAccounts = (token) => {
 export const deleteAccounts = (data) => {
   return Axios.post(`${environment.BaseURL}/accounts/deleteAccounts`, { data });
 };
+
+export const EditBankAccountAPi = (data) => {
+  return Axios.post(`${environment.BaseURL}/accounts/editAccounts`, { data });
+};

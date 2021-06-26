@@ -7,6 +7,7 @@ import { getAccounts, deleteAccounts } from "../../../api/api";
 function Accounts() {
   const [show, setShow] = useState(false);
   const [accountDetails, setAccountDetails] = useState([]);
+  const [EditData, setEditData] = useState({});
 
   const closeModal = () => {
     setShow(false);
@@ -21,7 +22,6 @@ function Accounts() {
     getAccounts(token)
       .then((res) => {
         if (res.data.message === "success") {
-          console.log(accountDetails);
           setAccountDetails(res.data.accounts);
         } else if (res.data.message === "exists") {
         }
@@ -49,15 +49,28 @@ function Accounts() {
       });
   };
   const editCard = (data) => {
-    console.log("edit Card with details: ", data);
+    setShow(true);
+    setEditData(data);
   };
 
   return (
     <div className="mt-3">
-      <AccountsModal show={show} closeModal={closeModal} updateData={getUserAccounts} ></AccountsModal>
+      <AccountsModal
+        show={show}
+        closeModal={closeModal}
+        updateData={getUserAccounts}
+        data={EditData}
+      ></AccountsModal>
       <h3 className="text-center">Manage your bank accounts here</h3>
       <div className="text-right m-4">
-        <Button onClick={() => setShow(true)}>Add Bank Account</Button>
+        <Button
+          onClick={() => {
+            setShow(true);
+            setEditData("");
+          }}
+        >
+          Add Bank Account
+        </Button>
       </div>
       <Row>
         {accountDetails.map((res) => {
