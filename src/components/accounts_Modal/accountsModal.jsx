@@ -10,9 +10,8 @@ export default function AccountsModal(props) {
 					<Modal.Title>Add Account Details</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<Form closeModal = {props.closeModal}></Form>
+					<Form closeModal = {props.closeModal} updateData={props.updateData} ></Form>
 				</Modal.Body>
-
 			</Modal>
 		</div>
 	)

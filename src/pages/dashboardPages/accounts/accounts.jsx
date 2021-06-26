@@ -54,7 +54,7 @@ function Accounts() {
 
   return (
     <div className="mt-3">
-      <AccountsModal show={show} closeModal={closeModal}></AccountsModal>
+      <AccountsModal show={show} closeModal={closeModal} updateData={getUserAccounts} ></AccountsModal>
       <h3 className="text-center">Manage your bank accounts here</h3>
       <div className="text-right m-4">
         <Button onClick={() => setShow(true)}>Add Bank Account</Button>

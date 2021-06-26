@@ -11,6 +11,7 @@ export default function form(props) {
         AddBankAccountAPi(formData).then((res) => {
             if (res.data.message === "success") {
                 props.closeModal();
+                props.updateData();
             } else if (res.data.message === "exists") {
                 console.log("user already exists")
             }
