@@ -59,8 +59,8 @@ export default function form(props) {
       errors.cardNo = "Required";
     } else if (!/^[0-9]*$/.test(cardNo)) {
       errors.cardNo = "Only numbers allowed";
-    } else if (cardNo.length !== 12) {
-      errors.cardNo = "12 digits required";
+    } else if (cardNo.length !== 16) {
+      errors.cardNo = "16 digits required";
     }
     return errors;
   };
