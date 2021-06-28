@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DashboardHOC from "../dashboardHOC";
-import { Button, Row } from "react-bootstrap";
+import { Button, Row, Spinner } from "react-bootstrap";
 import AccountsModal from "../../../components/accounts_Modal/accountsModal";
 import AccountCard from "../../../components/account_card/accountCard";
 import { getAccounts, deleteAccounts } from "../../../api/api";
@@ -73,6 +73,13 @@ function Accounts() {
         </Button>
       </div>
       <Row>
+        {accountDetails.length < 1 ? (
+          <div className="spinner-center">
+            <Spinner animation="border" variant="primary" />
+          </div>
+        ) : (
+          ""
+        )}
         {accountDetails.map((res) => {
           return (
             <div className="mt-5 pt-5 ml-5">
