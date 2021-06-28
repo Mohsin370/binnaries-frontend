@@ -1,26 +1,30 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button } from "react-bootstrap";
 import { AddBankAccountAPi, EditBankAccountAPi } from "../../../api/api";
 
-export default function form(props) {
-  const addCardDetails = (formData, actions) => {
-    console.log(actions);
+export default function FormComponent(props) {
+  const submitAccount = useRef();
+  const addCardDetails = (formData) => {
+    submitAccount.current.disabled = true;
     formData.token = localStorage.getItem("token");
     AddBankAccountAPi(formData)
       .then((res) => {
         if (res.data.message === "success") {
           props.closeModal();
           props.updateData();
-        } else if (res.data.message === "exists") {
+        } else {
+          submitAccount.current.disabled = false;
         }
       })
       .catch((err) => {
         console.log({ err });
+        submitAccount.current.disabled = false;
       });
   };
 
   const editCardDetails = (formData, actions) => {
+    submitAccount.current.disabled = true;
     formData.token = localStorage.getItem("token");
     formData.id = props.data.id;
     EditBankAccountAPi(formData)
@@ -28,10 +32,12 @@ export default function form(props) {
         if (res.data.message === "success") {
           props.closeModal();
           props.updateData();
-        } else if (res.data.message === "exists") {
+        } else {
+          submitAccount.current.disabled = false;
         }
       })
       .catch((err) => {
+        submitAccount.current.disabled = false;
         console.log({ err });
       });
   };
@@ -116,9 +122,12 @@ export default function form(props) {
           </div>
         </div>
         <div className="m-auto text-center">
-          <Button className="w-25 mt-2 float-right m-4 mt-5" type="submit">
-            {" "}
-            Save Details
+          <Button
+            className="w-25 mt-2 float-right m-4 mt-5"
+            type="submit"
+            ref={submitAccount}
+          >
+            {props.data ? "Update Details" : "Save Details"}
           </Button>
         </div>
       </Form>

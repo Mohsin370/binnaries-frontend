@@ -1,10 +1,8 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
-import Form from "./form/form";
+import FormComponent from "./form/form";
 
 export default function AccountsModal(props) {
-  console.log(props.data);
-
   return (
     <div>
       <Modal size="lg" show={props.show} centered onHide={props.closeModal}>
@@ -14,11 +12,11 @@ export default function AccountsModal(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form
+          <FormComponent
             closeModal={props.closeModal}
             updateData={props.updateData}
             data={props.data}
-          ></Form>
+          ></FormComponent>
         </Modal.Body>
       </Modal>
     </div>
