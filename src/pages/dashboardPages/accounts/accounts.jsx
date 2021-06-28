@@ -53,6 +53,10 @@ function Accounts() {
     setEditData(data);
   };
 
+  const searchCards = (e) =>{
+    console.log(e.target.value)
+  }
+
   return (
     <div className="mt-3">
       <AccountsModal
@@ -72,6 +76,10 @@ function Accounts() {
           Add Bank Account
         </Button>
       </div>
+      
+      <div className="searchInput" onChange={searchCards}>
+        <input placeholder="Search Accounts"/>
+        </div>
       <Row>
         {accountDetails.length < 1 ? (
           <div className="spinner-center">
@@ -82,7 +90,7 @@ function Accounts() {
         )}
         {accountDetails.map((res) => {
           return (
-            <div className="mt-5 pt-5 ml-5">
+            <div className="mt-4 pt-5 ml-5">
               <AccountCard
                 cardNo={res.card_no}
                 accTitle={res.acc_title}
