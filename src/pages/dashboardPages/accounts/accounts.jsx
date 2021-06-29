@@ -4,6 +4,7 @@ import { Button, Row, Spinner } from "react-bootstrap";
 import AccountsModal from "../../../components/accounts_Modal/accountsModal";
 import AccountCard from "../../../components/account_card/accountCard";
 import { getAccounts, deleteAccounts } from "../../../api/api";
+import Search from "../../../components/search_bar/search";
 function Accounts() {
   const [show, setShow] = useState(false);
   const [accountDetails, setAccountDetails] = useState([]);
@@ -53,9 +54,9 @@ function Accounts() {
     setEditData(data);
   };
 
-  const searchCards = (e) =>{
-    console.log(e.target.value)
-  }
+  const searchedData = (searchItems) => {
+    setAccountDetails(() => [...searchItems]);
+  };
 
   return (
     <div className="mt-3">
@@ -65,7 +66,7 @@ function Accounts() {
         updateData={getUserAccounts}
         data={EditData}
       ></AccountsModal>
-      <h3 className="text-center">Manage your bank accounts here</h3>
+      <h3 className="text-center">Manage your bank accounts</h3>
       <div className="text-right m-4">
         <Button
           onClick={() => {
@@ -76,10 +77,11 @@ function Accounts() {
           Add Bank Account
         </Button>
       </div>
-      
-      <div className="searchInput" onChange={searchCards}>
-        <input placeholder="Search Accounts"/>
-        </div>
+      <Search
+        searchData={accountDetails}
+        updateState={searchedData}
+        searchPlaceholder="Search Accounts"
+      />
       <Row>
         {accountDetails.length < 1 ? (
           <div className="spinner-center">

@@ -14,18 +14,3 @@ label {
   left: 50%;
 }
 
-.searchInput {
-    margin-right: 23px;
-    float: right;
-}
-
-.searchInput>input{
-    width: 300px;
-    outline: none;
-
-    border-top-style: hidden;
-    border-right-style: hidden;
-    border-left-style: hidden;
-    border-bottom-color: #007bff;
-    padding: 10px;
-}
