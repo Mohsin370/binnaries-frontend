@@ -9,7 +9,7 @@ export default function AccountCard(props) {
       <div className={styles.bankCardMain}>
         <Row>
           <Col sm={10}>
-            <p className="font-weight-bold">{props.bankName}</p>
+            <p>{props.bankName}</p>
           </Col>
           <Col sm={2}>
             <Row>
