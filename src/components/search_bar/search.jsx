@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import styles from "./search.module.css";
 
 export default function Search(props) {
+
   const [staticData, setStaticData] = useState([]);
-  if (staticData.length < 1 && props.searchData.length > 1) {
+  if (staticData.length < 1 && props.searchData.length > 0) {
     setStaticData(props.searchData);
-    console.log(staticData);
+
   }
 
   const searchItem = (e) => {
