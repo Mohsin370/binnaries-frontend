@@ -9,6 +9,7 @@ function Accounts() {
   const [show, setShow] = useState(false);
   const [accountDetails, setAccountDetails] = useState([]);
   const [EditData, setEditData] = useState({});
+  const [showSpinner, setshowSpinner] = useState(true);
 
   const closeModal = () => {
     setShow(false);
@@ -24,7 +25,9 @@ function Accounts() {
       .then((res) => {
         if (res.data.message === "success") {
           setAccountDetails(res.data.accounts);
-        } else if (res.data.message === "exists") {
+          setshowSpinner(false);
+        } else {
+          setshowSpinner(false);
         }
       })
       .catch((err) => {
@@ -84,9 +87,15 @@ function Accounts() {
       />
       <Row>
         {accountDetails.length < 1 ? (
-          <div className="spinner-center">
-            <Spinner animation="border" variant="primary" />
-          </div>
+          showSpinner ? (
+            <div className="spinner-center">
+              <Spinner animation="border" variant="primary" />
+            </div>
+          ) : (
+            <Row className="text-center m-auto">
+              <h4 className="mt-5"> No Item Available </h4>
+            </Row>
+          )
         ) : (
           ""
         )}
