@@ -1,15 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Home from '../pages/home/home';
-import Dashboard from '../pages/dashboardPages/dashboard/dashboard';
 import Signup from '../pages/signup/signup';
 import Login from '../pages/login/login';
+import Profile from '../pages/profile/profile';
+import Dashboard from '../pages/dashboardPages/dashboard/dashboard';
 import Analytics from '../pages/dashboardPages/analytics/analytics';
 import Customers from '../pages/dashboardPages/customers/customers';
 import Accounts from '../pages/dashboardPages/accounts/accounts';
 import { connect } from 'react-redux';
 
-function Routes(props) {
+function Routes() {
   const token = localStorage.getItem("token");
   console.log(token);
   return (
@@ -18,6 +19,7 @@ function Routes(props) {
         <Switch> 
           {/* private Routes */}
           <Route path="/dashboard" exact> <Dashboard></Dashboard>  </Route>
+          <Route path="/profile" exact> <Profile></Profile>  </Route>
           <Route path="/dashboard/Analytics" exact> <Analytics></Analytics> </Route>
           <Route path="/dashboard/Customers" exact> <Customers></Customers> </Route>
           <Route path="/dashboard/Accounts" exact> <Accounts></Accounts> </Route>

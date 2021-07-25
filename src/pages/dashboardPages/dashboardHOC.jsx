@@ -17,7 +17,7 @@ let DashboardHOC = (OrignalComponent) => {
     return (
       <div className={styles.dashboardMain}>
         <div className="row m-auto h-100">
-          <div className="col-md-3 col-xl-2 p-0" style={{ backgroundColor: "#0d2e70" }}>
+          <div className="col-md-3 col-xl-2 p-0" style={{ backgroundColor: "#053ffc" }}>
             <SideNav></SideNav>
           </div>
           <div className="col-md-9 col-xl-10" style={{ backgroundColor: "#f3f7fa" }}>

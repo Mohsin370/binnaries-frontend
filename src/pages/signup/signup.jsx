@@ -119,7 +119,7 @@ const Signup = () => {
                                                 <ErrorMessage name="password" component="div" className="text-danger" />
                                             </div>
                                             <div className="col-md-6">
-                                                <label className="d-block">Password</label>
+                                                <label className="d-block">Confirm Password</label>
                                                 <Field type="password" name="confirmPassword" className="form-control" />
                                                 <ErrorMessage name="confirmPassword" component="div" className="text-danger" />
                                             </div>
