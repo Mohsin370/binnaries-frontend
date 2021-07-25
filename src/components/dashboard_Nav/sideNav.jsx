@@ -20,7 +20,7 @@ function sideNav() {
   return (
     <div className=" pt-3">
       <h4>
-        <Link className={[navlinkClass, "text-white"].join(" ")} to="/"></Link>
+        <Link className={[navlinkClass, "text-white"].join(" ")} to="/">Binnaries</Link>
       </h4>
       <Link
         className={[

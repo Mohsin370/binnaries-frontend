@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import styles from "./dashboardTopNav.module.css";
-import SettingsSvg from "../../assets/icons/settings.svg";
-import notificationSvg from "../../assets/icons/notification.svg";
 import UserPlaceHolder from "../../assets/images/placeholder-user.png";
 import DownArrow from "../../assets/icons/down-arrow.svg";
 import { connect } from "react-redux";
@@ -33,16 +31,6 @@ function DashboardTopNav(props) {
           <div className={styles.hamburgerItem}></div>
         </div>
         <div className="d-flex align-items-center">
-          <div type="button" className="mr-3">
-            <img
-              src={notificationSvg}
-              style={{ height: "22px" }}
-              alt="notification"
-            />
-          </div>
-          <div type="button" className="mr-3">
-            <img src={SettingsSvg} style={{ height: "22px" }} alt="settings" />
-          </div>
           <div className="d-flex align-items-center justify-content-center">
             <img
               src={UserPlaceHolder}

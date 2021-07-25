@@ -121,7 +121,6 @@ const Login = (props) => {
                     </div>
                     <div className="m-auto text-center">
                       <Button className=" w-75" type="submit">
-                        {" "}
                         Login
                       </Button>
                       <h6 className="pt-3">

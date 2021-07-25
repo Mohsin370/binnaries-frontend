@@ -1,0 +1,25 @@
+.profileContainer{
+    width: 106px;
+    height: 106px;
+    border-radius: 99px;
+    margin:auto;
+    margin-top:5%;
+    position:relative;
+    object-fit: cover;
+}
+
+.profileContainer >img{
+    width: 100%;
+    height: 100%;
+    border-radius: 99px;
+}
+.editProfile{
+    position: absolute;
+    top: 70%;
+    left: 80%;
+    z-index: 1;
+    cursor: pointer;
+}
+input[type="file"]{
+    display: none;
+}
