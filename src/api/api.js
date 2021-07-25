@@ -9,6 +9,10 @@ export const SignupAPi = (data) => {
   return Axios.post(`${environment.BaseURL}/users/signup`, { data });
 };
 
+export const EditProfileDetails = (data) => {
+  return Axios.post(`${environment.BaseURL}/users/editProfile`, { data });
+};
+
 export const AddBankAccountAPi = (data) => {
   return Axios.post(`${environment.BaseURL}/accounts/addCard`, { data });
 };
@@ -26,3 +30,4 @@ export const deleteAccounts = (data) => {
 export const EditBankAccountAPi = (data) => {
   return Axios.post(`${environment.BaseURL}/accounts/editAccounts`, { data });
 };
+

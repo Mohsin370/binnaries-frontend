@@ -4,6 +4,7 @@ import { Button, Col, Row } from "react-bootstrap";
 import styles from "./editProfile.module.css";
 import UserPlaceHolder from "../../../assets/images/placeholder-user.png";
 import uploadCamera from "../../../assets/icons/upload-camera.svg";
+import { EditProfileDetails } from "../../../api/api";
 
 function EditProfile() {
   const [uploadImage, setUploadImage] = useState("");
@@ -29,7 +30,17 @@ function EditProfile() {
   };
 
   const updateProfile = (values) => {
-    console.log(values);
+    if(uploadImage){
+      values.image = uploadImage
+    }
+    values.token = localStorage.getItem('token')
+    EditProfileDetails(values).then((res)=>{
+      if(res.message === 'success'){
+        //edit success message
+      }else{
+        //failed message
+      }
+    })
   };
   const setProfileImage = (e) => {
     if (e.target.files[0]) {
