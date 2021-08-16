@@ -6,7 +6,7 @@ import ChangePassword from "./changePassword/changePassword";
 
 function Profile() {
   return (
-    <Row>
+    <Row className="m-auto">
       <Col sm="6" className="mt-5">
         <EditProfile></EditProfile>
       </Col>
