@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button, Col, Row } from "react-bootstrap";
 import styles from "./editProfile.module.css";
@@ -7,22 +7,26 @@ import uploadCamera from "../../../assets/icons/upload-camera.svg";
 import { EditProfileDetails } from "../../../api/api";
 
 function EditProfile() {
+  const userData = JSON.parse(localStorage.getItem("userData"));
   const [uploadImage, setUploadImage] = useState("");
   const initialValues = {
-    name: "",
-    email: "",
-    uploadImage: "",
+    name: userData ? userData.name : "",
+    email: userData ? userData.email : "",
   };
+
+  useEffect(() => {
+    console.log(userData.profile_img);
+
+    if (userData.profile_img) {
+       setUploadImage(userData.profile_img);
+    }
+  },[userData.profile_img])
+
 
   const validation = (values) => {
     console.log(values);
-    const { email, name } = values;
+    const { name } = values;
     const errors = {};
-    if (!email) {
-      errors.email = "Required";
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
-      errors.email = "Invalid email address";
-    }
     if (!name) {
       errors.name = "Required";
     }
@@ -30,22 +34,26 @@ function EditProfile() {
   };
 
   const updateProfile = (values) => {
-    if(uploadImage){
-      values.image = uploadImage
+    if (uploadImage) {
+      values.image = uploadImage;
     }
-    values.token = localStorage.getItem('token')
-    EditProfileDetails(values).then((res)=>{
-      if(res.message === 'success'){
+    values.token = userData.token;
+    values.uuid = userData.uuid;
+    EditProfileDetails(values).then((res) => {
+      if (res.message === "success") {
         //edit success message
-      }else{
+      } else {
         //failed message
       }
-    })
+    });
   };
   const setProfileImage = (e) => {
     if (e.target.files[0]) {
-      setUploadImage(URL.createObjectURL(e.target.files[0]));
-      console.log(URL.createObjectURL(e.target.files[0]));
+      const reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onloadend = () => {
+        setUploadImage(reader.result);
+      };
     }
   };
 
@@ -82,11 +90,11 @@ function EditProfile() {
           </Col>
           <Col sm="9" className="m-auto pt-3">
             <label className="d-block">Email</label>
-            <Field type="email" name="email" className="form-control" />
-            <ErrorMessage
+            <Field
+              type="email"
               name="email"
-              component="div"
-              className="text-danger"
+              className="form-control"
+              disabled
             />
           </Col>
         </Row>

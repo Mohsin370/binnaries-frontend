@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import styles from "./login.module.css";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -13,7 +13,6 @@ import Toasts from "../../components/toast_message/Toast";
 const Login = (props) => {
   const history = useHistory();
   const [showError, setshowError] = useState(false);
-
 
   const validation = (values) => {
     const { email, password } = values;
@@ -36,11 +35,11 @@ const Login = (props) => {
           history.push({
             pathname: "/dashboard",
           });
-          props.updateRoutes(res.data);
+          props.updateRoutes(res.data.userData);
         } else if (res.data.message === "invalid") {
-          setshowError(true)
-        }else if (res.data.message === "email_invalid"){
-          setshowError(true)
+          setshowError(true);
+        } else if (res.data.message === "email_invalid") {
+          setshowError(true);
         }
       })
       .catch((err) => {
@@ -49,10 +48,18 @@ const Login = (props) => {
   };
   const toggleErrorToast = () => setshowError(!showError);
 
-
   return (
     <div>
-    { showError? <Toasts toggleToast = {toggleErrorToast} showToast={showError} header="Login Error" body="Incorrect Username or Password" />:''}
+      {showError ? (
+        <Toasts
+          toggleToast={toggleErrorToast}
+          showToast={showError}
+          header="Login Error"
+          body="Incorrect Username or Password"
+        />
+      ) : (
+        ""
+      )}
       <div className={styles.loginContainer}>
         <div className="w-75 h-75 m-auto bg-white">
           <div className="row m-auto h-100">
@@ -62,8 +69,7 @@ const Login = (props) => {
             >
               <h4 className="pt-4 pl-2 text-white">
                 <Link className="text-decoration-none text-white" to="/">
-                  {" "}
-                  Binaries{" "}
+                  Binaries
                 </Link>
               </h4>
 

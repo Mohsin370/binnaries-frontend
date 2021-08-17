@@ -10,12 +10,11 @@ import Customers from '../pages/dashboardPages/customers/customers';
 import Accounts from '../pages/dashboardPages/accounts/accounts';
 import { connect } from 'react-redux';
 
-function Routes() {
-  const token = localStorage.getItem("token");
-  console.log(token);
+function Routes(props) {
+  console.log(props.AuthReducer.isLoggedIn);
   return (
     <Router>
-      {token ?
+      {props.AuthReducer.isLoggedIn?
         <Switch> 
           {/* private Routes */}
           <Route path="/dashboard" exact> <Dashboard></Dashboard>  </Route>

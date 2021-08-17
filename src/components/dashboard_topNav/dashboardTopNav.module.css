@@ -30,4 +30,8 @@
     width: 150px;
     padding: 15px;
     border: 10px;
+    z-index: 1;
+}
+.dropdown > a {
+    color: black !important;
 }

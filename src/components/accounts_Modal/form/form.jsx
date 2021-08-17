@@ -1,13 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button } from "react-bootstrap";
 import { AddBankAccountAPi, EditBankAccountAPi } from "../../../api/api";
 
 export default function FormComponent(props) {
+  const userData = JSON.parse(localStorage.getItem("userData"));
   const submitAccount = useRef();
   const addCardDetails = (formData) => {
     submitAccount.current.disabled = true;
-    formData.token = localStorage.getItem("token");
+    formData.token = userData.token;
     AddBankAccountAPi(formData)
       .then((res) => {
         if (res.data.message === "success") {
@@ -25,7 +26,7 @@ export default function FormComponent(props) {
 
   const editCardDetails = (formData, actions) => {
     submitAccount.current.disabled = true;
-    formData.token = localStorage.getItem("token");
+    formData.token = userData.token;
     formData.id = props.data.id;
     EditBankAccountAPi(formData)
       .then((res) => {

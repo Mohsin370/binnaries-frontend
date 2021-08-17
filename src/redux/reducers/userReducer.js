@@ -3,30 +3,39 @@ const initState = {
 }
 
 const loginState = {
-    isLoggedIn : false,
+    isLoggedIn: false,
 }
 
-export const loginReducer = (state = loginState, action) => {
-    if (action.type === "update Login State") {
-        localStorage.setItem("token",action.data.token);
+export const AuthReducer = (state = loginState, action) => {
+    if (action.type === "LoginUser") {
+        localStorage.setItem("userData", JSON.stringify(action.data));
         let newState = true;
         return {
             isLoggedIn: newState,
         }
+    } else if (action.type === "logoutUser") {
+        localStorage.removeItem("userData")
+        let newState = false;
+        return {
+            isLoggedIn: newState,
+        }
     }
-    return state;
+    let userData = JSON.parse(localStorage.getItem("userData"))
+    if (userData) {
+        return {
+            isLoggedIn: true,
+        }
+    } else {
+        return {
+            isLoggedIn: false,
+        }
+    }
 }
 
 
 
 export const LogoutReducer = (state = loginState, action) => {
-    if(action.type === "logoutUser"){
-      localStorage.removeItem("token")
-      let newState = false;
-      return {
-          isLoggedIn: newState,
-      }
-    }
+
     return state;
 }
 

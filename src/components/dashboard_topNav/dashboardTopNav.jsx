@@ -4,8 +4,10 @@ import UserPlaceHolder from "../../assets/images/placeholder-user.png";
 import DownArrow from "../../assets/icons/down-arrow.svg";
 import { connect } from "react-redux";
 import { logoutUser } from "../../redux/actions/actions";
+import { Link } from "react-router-dom";
 
 function DashboardTopNav(props) {
+  const userData = JSON.parse(localStorage.getItem("userData"));
   const [DropDownState, setDropDownState] = useState(false);
   const ToggleDropDown = () => {
     setDropDownState(!DropDownState);
@@ -39,7 +41,7 @@ function DashboardTopNav(props) {
             />
             <span type="button" id="dropDown" onClick={ToggleDropDown}>
               <span className="ml-2 pr-2" id="dropDown">
-                Khawaja Mohsin{" "}
+                {userData.name}
               </span>
               <img
                 src={DownArrow}
@@ -52,7 +54,7 @@ function DashboardTopNav(props) {
 
           {DropDownState ? (
             <div className={styles.dropdown}>
-              <p>Profile</p>
+              <Link to="/profile" className="text-decoration-none color-black">Profile</Link>
               <hr></hr>
               <p type="button" onClick={logout}>
                 Logout

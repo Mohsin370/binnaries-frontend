@@ -6,7 +6,7 @@ export const addCounter = (dispatch) => {
 }
 export const updateLoginState = (dispatch) => {
     return {
-        updateRoutes: (data) => dispatch({ type: "update Login State" ,data})
+        updateRoutes: (data) => dispatch({ type: "LoginUser" ,data})
     }
 }
 export const logoutUser = (dispatch) => {
