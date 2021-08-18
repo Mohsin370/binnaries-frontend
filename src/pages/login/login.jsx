@@ -72,14 +72,13 @@ const Login = (props) => {
                   Binaries
                 </Link>
               </h4>
-
               <h3 className="pt-5 pl-2 pb-4 text-white">
                 We provide what your business demands.
               </h3>
               <img src={LoginImage} className={styles.loginImg} alt="login" />
             </div>
-            <div className="col-md-5 h-100 d-flex align-items-center">
-              <div className="pl-5 h-75 w-75 m-auto ">
+            <div className="col-md-5 h-100 d-flex">
+              <div className="pl-5 m-auto ">
                 <h3>
                   <b>Login</b>
                 </h3>

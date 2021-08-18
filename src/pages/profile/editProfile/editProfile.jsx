@@ -15,8 +15,6 @@ function EditProfile() {
   };
 
   useEffect(() => {
-    console.log(userData.profile_img);
-
     if (userData.profile_img) {
        setUploadImage(userData.profile_img);
     }
@@ -24,7 +22,6 @@ function EditProfile() {
 
 
   const validation = (values) => {
-    console.log(values);
     const { name } = values;
     const errors = {};
     if (!name) {
