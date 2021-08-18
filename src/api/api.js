@@ -17,6 +17,10 @@ export const EditProfileDetails = (data) => {
   return Axios.post(`${environment.BaseURL}/users/editProfile`, { data });
 };
 
+export const ChangeUserPassword = (data) => {
+  return Axios.post(`${environment.BaseURL}/users/changePassword`, { data });
+};
+
 export const AddBankAccountAPi = (data) => {
   return Axios.post(`${environment.BaseURL}/accounts/addCard`, { data });
 };
