@@ -7,7 +7,6 @@ import { logoutUser } from "../../redux/actions/actions";
 import { Link } from "react-router-dom";
 
 function DashboardTopNav(props) {
-  const userData = JSON.parse(localStorage.getItem("userData"));
   const [DropDownState, setDropDownState] = useState(false);
   const ToggleDropDown = () => {
     setDropDownState(!DropDownState);
@@ -35,13 +34,13 @@ function DashboardTopNav(props) {
         <div className="d-flex align-items-center">
           <div className="d-flex align-items-center justify-content-center">
             <img
-              src={UserPlaceHolder}
+              src={props.updateUserReducer.profile_img?props.updateUserReducer.profile_img:UserPlaceHolder}
               className={styles.shortProfilePic}
               alt="profile"
             />
             <span type="button" id="dropDown" onClick={ToggleDropDown}>
               <span className="ml-2 pr-2" id="dropDown">
-                {userData.name}
+                {props.updateUserReducer.name}
               </span>
               <img
                 src={DownArrow}

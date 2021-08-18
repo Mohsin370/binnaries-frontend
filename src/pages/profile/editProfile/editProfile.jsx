@@ -1,25 +1,27 @@
 import { useState, useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Col, Row, Spinner } from "react-bootstrap";
 import styles from "./editProfile.module.css";
 import UserPlaceHolder from "../../../assets/images/placeholder-user.png";
 import uploadCamera from "../../../assets/icons/upload-camera.svg";
 import { EditProfileDetails } from "../../../api/api";
+import { connect } from "react-redux";
+import { updateUserDetails } from "../../../redux/actions/actions";
 
-function EditProfile() {
+function EditProfile(props) {
   const userData = JSON.parse(localStorage.getItem("userData"));
   const [uploadImage, setUploadImage] = useState("");
+  const [showSpinner, setshowSpinner] = useState(false);
   const initialValues = {
-    name: userData ? userData.name : "",
-    email: userData ? userData.email : "",
+    name: props.updateUserReducer ? props.updateUserReducer.name : "",
+    email: props.updateUserReducer ? props.updateUserReducer.email : "",
   };
 
   useEffect(() => {
-    if (userData.profile_img) {
-       setUploadImage(userData.profile_img);
+    if (props.updateUserReducer.profile_img) {
+      setUploadImage(props.updateUserReducer.profile_img);
     }
-  },[userData.profile_img])
-
+  }, [props]);
 
   const validation = (values) => {
     const { name } = values;
@@ -31,15 +33,25 @@ function EditProfile() {
   };
 
   const updateProfile = (values) => {
+    setshowSpinner(true);
     if (uploadImage) {
       values.image = uploadImage;
     }
     values.token = userData.token;
     values.uuid = userData.uuid;
     EditProfileDetails(values).then((res) => {
-      if (res.message === "success") {
+      console.log(res);
+      if (res.data.message === "success") {
         //edit success message
+        const { name, email } = values;
+        props.updateUserDetails({
+          name,
+          email,
+          profile_img: res.data.profile_img,
+        });
+        setshowSpinner(false);
       } else {
+        setshowSpinner(false);
         //failed message
       }
     });
@@ -59,6 +71,7 @@ function EditProfile() {
       initialValues={initialValues}
       validate={validation}
       onSubmit={updateProfile}
+      enableReinitialize
     >
       <Form>
         <div>
@@ -96,12 +109,24 @@ function EditProfile() {
           </Col>
         </Row>
         <div className="text-center">
-          <Button className="mt-5" type="submit">
+          <Button className="mt-5" type="submit" disabled={showSpinner}>
             Save
+            {showSpinner && (
+              <Spinner
+                animation="border"
+                variant="light"
+                size="sm"
+                className="mb-1 ml-2"
+              />
+            )}
           </Button>
         </div>
       </Form>
     </Formik>
   );
 }
-export default EditProfile;
+const mapStateToProps = (state) => {
+  return state;
+};
+
+export default connect(mapStateToProps, updateUserDetails)(EditProfile);

@@ -6,6 +6,28 @@ const loginState = {
     isLoggedIn: false,
 }
 
+const userDetails = {
+    name: null,
+    email: null,
+    profile_img: null,
+
+}
+
+export const updateUserReducer = (state = userDetails, action) => {
+    if (action.type === "updateUser" || action.type === "LoginUser") {
+        return {
+            name: action.data.name,
+            email: action.data.email,
+            profile_img: action.data.profile_img,
+        }
+    }
+    return {
+        name: null,
+        email: null,
+        profile_img: null,
+    }
+}
+
 export const AuthReducer = (state = loginState, action) => {
     if (action.type === "LoginUser") {
         localStorage.setItem("userData", JSON.stringify(action.data));

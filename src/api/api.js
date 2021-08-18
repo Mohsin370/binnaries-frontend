@@ -9,6 +9,10 @@ export const SignupAPi = (data) => {
   return Axios.post(`${environment.BaseURL}/users/signup`, { data });
 };
 
+export const GetProfileDetails = (data) => {
+  return Axios.post(`${environment.BaseURL}/users/getProfile`, { data });
+};
+
 export const EditProfileDetails = (data) => {
   return Axios.post(`${environment.BaseURL}/users/editProfile`, { data });
 };

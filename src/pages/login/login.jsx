@@ -11,6 +11,7 @@ import { updateLoginState } from "../../redux/actions/actions";
 import Toasts from "../../components/toast_message/Toast";
 
 const Login = (props) => {
+  console.log(props);
   const history = useHistory();
   const [showError, setshowError] = useState(false);
 
@@ -36,6 +37,7 @@ const Login = (props) => {
             pathname: "/dashboard",
           });
           props.updateRoutes(res.data.userData);
+     
         } else if (res.data.message === "invalid") {
           setshowError(true);
         } else if (res.data.message === "email_invalid") {
