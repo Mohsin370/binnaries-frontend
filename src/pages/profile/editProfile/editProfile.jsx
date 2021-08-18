@@ -7,11 +7,17 @@ import uploadCamera from "../../../assets/icons/upload-camera.svg";
 import { EditProfileDetails } from "../../../api/api";
 import { connect } from "react-redux";
 import { updateUserDetails } from "../../../redux/actions/actions";
+import Toasts from "../../../components/toast_message/Toast";
+
 
 function EditProfile(props) {
   const userData = JSON.parse(localStorage.getItem("userData"));
   const [uploadImage, setUploadImage] = useState("");
   const [showSpinner, setshowSpinner] = useState(false);
+  const [showToast, setshowToast] = useState(false);
+  const [toastMessage, settoastMessage] = useState({header:"", body: ""});
+  
+
   const initialValues = {
     name: props.updateUserReducer ? props.updateUserReducer.name : "",
     email: props.updateUserReducer ? props.updateUserReducer.email : "",
@@ -50,9 +56,12 @@ function EditProfile(props) {
           profile_img: res.data.profile_img,
         });
         setshowSpinner(false);
+        setshowToast(true);
+        settoastMessage({header:"Success!", body:"Profile has been updated successfully"})
       } else {
         setshowSpinner(false);
-        //failed message
+        setshowToast(true);
+        settoastMessage({header:"Error!", body:"Something Went Wrong"})
       }
     });
   };
@@ -65,8 +74,18 @@ function EditProfile(props) {
       };
     }
   };
+  const toggleErrorToast = () => setshowToast(!showToast);
+
 
   return (
+    <>
+    
+    <Toasts
+          toggleToast={toggleErrorToast}
+          showToast={showToast}
+          header={toastMessage.header}
+          body={toastMessage.body}
+        />
     <Formik
       initialValues={initialValues}
       validate={validation}
@@ -123,6 +142,7 @@ function EditProfile(props) {
         </div>
       </Form>
     </Formik>
+    </>
   );
 }
 const mapStateToProps = (state) => {
