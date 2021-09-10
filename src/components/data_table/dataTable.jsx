@@ -1,30 +1,47 @@
-import DataTable, { createTheme } from 'react-data-table-component-with-filter';
+import DataTable, { createTheme } from "react-data-table-component-with-filter";
 
-
-const data = [{ id: 1, title: 'Conan the Barbarian', year: '1982' },
-{ id: 2, title: 'Bonan the Barbarian', year: '1983' }];
 const columns = [
   {
-    name: 'Title',
-    selector: 'title',
+    name: "Name",
+    selector: "name",
     sortable: true,
-		filterable: true,
+    filterable: true,
   },
   {
-    name: 'Year',
-    selector: 'year',
+    name: "Company Name",
+    selector: "companyName",
     sortable: true,
-    right: false,
+    filterable: true,
+  },
+  {
+    name: "Location",
+    selector: "location",
+    sortable: true,
+  },
+  {
+    name: "Description",
+    selector: "description",
+    sortable: true,
+  },
+  {
+    name: "Created at",
+    selector: "createdAt",
+    sortable: true,
+  },
+  {
+    name: "Updated At",
+    selector: "createdAt",
+    sortable: true,
   },
 ];
 
-const ReactDataTable = () => (
+const ReactDataTable = (props) => (
   <DataTable
-  title="Arnold Movies"
-  columns ={columns}
-  data ={data}
-  pagination
-/>
+    title={props.title}
+    columns={columns}
+    data={props.data}
+    pagination
+  />
 );
 
 export default ReactDataTable;

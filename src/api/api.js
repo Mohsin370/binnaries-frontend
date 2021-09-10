@@ -39,3 +39,13 @@ export const EditBankAccountAPi = (data) => {
   return Axios.post(`${environment.BaseURL}/accounts/editAccounts`, { data });
 };
 
+
+export const addCustomers = (data) => {
+  return Axios.post(`${environment.BaseURL}/customers/addCustomer`, { data });
+};
+export const getCustomers = (data) => {
+  return Axios.get(`${environment.BaseURL}/customers/getCustomers`,
+    { params: { token: data.token, uuid: data.uuid }, }
+  );
+};
+
