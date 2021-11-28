@@ -10,14 +10,10 @@ function Customers() {
   }, []);
   const [showSpinner, setshowSpinner] = useState(true);
   const [customerData, setcustomerData] = useState([]);
-  const userData = JSON.parse(localStorage.getItem("userData"));
 
   const getUserCustomers = () => {
-    const data ={
-        token:userData.token,
-        uuid:userData.uuid,
-    }
-    getCustomers(data)
+    
+    getCustomers()
       .then((res) => {
         if (res.data.message === "success") {
            setcustomerData(res.data.customers);

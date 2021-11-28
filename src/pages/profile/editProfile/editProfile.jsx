@@ -11,7 +11,6 @@ import Toasts from "../../../components/toast_message/Toast";
 
 
 function EditProfile(props) {
-  const userData = JSON.parse(localStorage.getItem("userData"));
   const [uploadImage, setUploadImage] = useState("");
   const [showSpinner, setshowSpinner] = useState(false);
   const [showToast, setshowToast] = useState(false);
@@ -43,8 +42,6 @@ function EditProfile(props) {
     if (uploadImage) {
       values.image = uploadImage;
     }
-    values.token = userData.token;
-    values.uuid = userData.uuid;
     EditProfileDetails(values).then((res) => {
       console.log(res);
       if (res.data.message === "success") {

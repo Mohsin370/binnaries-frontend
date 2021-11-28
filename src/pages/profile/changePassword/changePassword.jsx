@@ -35,9 +35,6 @@ export default function ChangePassword() {
 
   const onHandleSubmit = (values) => {
     setshowSpinner(true);
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    values.token = userData.token;
-    values.uuid = userData.uuid;
     ChangeUserPassword(values)
       .then((res) => {
         setshowSpinner(false);

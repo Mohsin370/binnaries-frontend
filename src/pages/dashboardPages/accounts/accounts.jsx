@@ -10,7 +10,6 @@ function Accounts() {
   const [accountDetails, setAccountDetails] = useState([]);
   const [EditData, setEditData] = useState({});
   const [showSpinner, setshowSpinner] = useState(true);
-  const userData = JSON.parse(localStorage.getItem("userData"));
 
   const closeModal = () => {
     setShow(false);
@@ -21,8 +20,7 @@ function Accounts() {
   }, []);
 
   const getUserAccounts = () => {
-    const token = userData.token;
-    getAccounts(token)
+    getAccounts()
       .then((res) => {
         if (res.data.message === "success") {
           setAccountDetails(res.data.accounts);
@@ -37,9 +35,7 @@ function Accounts() {
   };
 
   const deleteCard = (id) => {
-    const token = userData.token;
     const data = {
-      token,
       id,
     };
     deleteAccounts(data)
