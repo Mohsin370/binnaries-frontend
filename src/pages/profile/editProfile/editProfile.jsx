@@ -41,9 +41,10 @@ function EditProfile(props) {
     setshowSpinner(true);
     if (uploadImage) {
       values.image = uploadImage;
+    }else{
+      values.image = null;
     }
     EditProfileDetails(values).then((res) => {
-      console.log(res);
       if (res.data.message === "success") {
         //edit success message
         const { name, email } = values;
@@ -60,6 +61,10 @@ function EditProfile(props) {
         setshowToast(true);
         settoastMessage({header:"Error!", body:"Something Went Wrong"})
       }
+    }).catch(()=>{
+      setshowSpinner(false);
+      setshowToast(true);
+      settoastMessage({header:"Error!", body:"Something Went Wrong"})
     });
   };
   const setProfileImage = (e) => {

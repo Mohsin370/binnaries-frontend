@@ -13,19 +13,20 @@ export const SignupAPi = (data) => {
 };
 
 export const GetProfileDetails = () => {
+  console.log(userData);
   return Axios.get(`${environment.BaseURL}/users/${uuid}/getProfile`, {
     headers: { "Authorization": `${token}` },
   });
 };
 
 export const EditProfileDetails = (data) => {
-  return Axios.post(`${environment.BaseURL}/users/editProfile`, { data }, {
+  return Axios.post(`${environment.BaseURL}/users/${uuid}/editProfile`, { data }, {
     headers: { "Authorization": `${token}` },
   });
 };
 
 export const ChangeUserPassword = (data) => {
-  return Axios.post(`${environment.BaseURL}/users/changePassword`, { data }, {
+  return Axios.post(`${environment.BaseURL}/users/${uuid}/changePassword`, { data }, {
     headers: { "Authorization": `${token}` },
   });
 };
@@ -37,7 +38,7 @@ export const AddBankAccountAPi = (data) => {
 };
 
 export const getAccounts = () => {
-  return Axios.get(`${environment.BaseURL}/accounts/getAccounts`, {
+  return Axios.get(`${environment.BaseURL}/accounts/users/${uuid}/getAccounts`, {
     headers: { "Authorization": `${token}` },
   });
 };
