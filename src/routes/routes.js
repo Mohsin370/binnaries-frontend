@@ -18,7 +18,7 @@ function Routes(props) {
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("userData"));
     if (userData) {
-      GetProfileDetails({ token: userData.token, uuid: userData.uuid }).then(
+      GetProfileDetails().then(
         (res) => {
           props.updateUserDetails(res.data)
         }

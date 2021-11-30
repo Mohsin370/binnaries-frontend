@@ -11,7 +11,6 @@ import Toasts from "../../../components/toast_message/Toast";
 
 
 function EditProfile(props) {
-  const userData = JSON.parse(localStorage.getItem("userData"));
   const [uploadImage, setUploadImage] = useState("");
   const [showSpinner, setshowSpinner] = useState(false);
   const [showToast, setshowToast] = useState(false);
@@ -42,11 +41,10 @@ function EditProfile(props) {
     setshowSpinner(true);
     if (uploadImage) {
       values.image = uploadImage;
+    }else{
+      values.image = null;
     }
-    values.token = userData.token;
-    values.uuid = userData.uuid;
     EditProfileDetails(values).then((res) => {
-      console.log(res);
       if (res.data.message === "success") {
         //edit success message
         const { name, email } = values;
@@ -63,6 +61,10 @@ function EditProfile(props) {
         setshowToast(true);
         settoastMessage({header:"Error!", body:"Something Went Wrong"})
       }
+    }).catch(()=>{
+      setshowSpinner(false);
+      setshowToast(true);
+      settoastMessage({header:"Error!", body:"Something Went Wrong"})
     });
   };
   const setProfileImage = (e) => {
