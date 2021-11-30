@@ -32,6 +32,7 @@ export const ChangeUserPassword = (data) => {
 };
 
 export const AddBankAccountAPi = (data) => {
+  data.uuid = uuid;
   return Axios.post(`${environment.BaseURL}/accounts/addCard`, { data }, {
     headers: { "Authorization": `${token}` },
   });
@@ -44,26 +45,25 @@ export const getAccounts = () => {
 };
 
 export const deleteAccounts = (data) => {
-  return Axios.post(`${environment.BaseURL}/accounts/deleteAccounts`, { data }, {
+  return Axios.post(`${environment.BaseURL}/accounts/${data.id}/deleteAccounts`, { data }, {
     headers: { "Authorization": `${token}` },
   });
 };
 
 export const EditBankAccountAPi = (data) => {
-  return Axios.post(`${environment.BaseURL}/accounts/editAccounts`, { data }, {
+  return Axios.put(`${environment.BaseURL}/accounts/${data.id}/editAccounts`, { data }, {
     headers: { "Authorization": `${token}` },
   });
 };
 
 
 export const addCustomers = (data) => {
-  return Axios.post(`${environment.BaseURL}/customers/addCustomer`, { data }, {
+  return Axios.post(`${environment.BaseURL}/customers/users/addCustomer`, { data }, {
     headers: { "Authorization": `${token}` },
   });
 };
 export const getCustomers = () => {
-  return Axios.get(`${environment.BaseURL}/customers/getCustomers`,
-    { params: { uuid } },
+  return Axios.get(`${environment.BaseURL}/customers/users/${uuid}/getCustomers`,
     {
       headers: { "Authorization": `${token}` },
     }
