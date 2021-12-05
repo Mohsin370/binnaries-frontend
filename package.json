@@ -1,6 +1,6 @@
 {
   "name": "react-dashboard",
-  "homepage": "https://binnaries-frontend.vercel.app/",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
