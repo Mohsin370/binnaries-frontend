@@ -1,7 +1,7 @@
 import { environment } from "../environments/environment";
 import Axios from "axios";
 const userData = JSON.parse(localStorage.getItem("userData"));
-const { token, uuid } = userData;
+const { token, uuid } = userData || {};
 
 
 export const LoginApi = (data) => {
