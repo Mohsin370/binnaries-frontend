@@ -1,6 +1,10 @@
-import DataTable, { createTheme } from "react-data-table-component-with-filter";
+import { Button } from "react-bootstrap";
+import DataTable from "react-data-table-component-with-filter";
 
 const columns = [
+  {
+    name: "Actions",
+  },
   {
     name: "Name",
     selector: "name",
@@ -35,12 +39,18 @@ const columns = [
   },
 ];
 
+const Add = (onAdd)=>{
+  return(
+    <Button onClick={onAdd}>Add</Button>
+  )
+}
 const ReactDataTable = (props) => (
   <DataTable
     title={props.title}
     columns={columns}
     data={props.data}
     pagination
+    actions={props.actions.add && Add(props.onAdd)}
   />
 );
 

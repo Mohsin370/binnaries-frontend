@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import DashboardHOC from "../dashboardHOC";
 import ReactDataTable from "../../../components/data_table/dataTable";
-import { getCustomers } from "../../../api/api";
+import { getCustomers, addCustomer } from "../../../api/api";
 import { Spinner } from "react-bootstrap";
+import { useHistory } from "react-router";
 
 function Customers() {
   useEffect(() => {
@@ -10,13 +11,13 @@ function Customers() {
   }, []);
   const [showSpinner, setshowSpinner] = useState(true);
   const [customerData, setcustomerData] = useState([]);
+  const history = useHistory();
 
   const getUserCustomers = () => {
-    
     getCustomers()
       .then((res) => {
         if (res.data.message === "success") {
-           setcustomerData(res.data.customers);
+          setcustomerData(res.data.customers);
           setshowSpinner(false);
         } else {
           setshowSpinner(false);
@@ -25,6 +26,22 @@ function Customers() {
       .catch((err) => {
         console.log({ err });
       });
+  };
+
+  const addNewCustomer = (data) => {
+    const { name, description, companyName, location } = data;
+    addCustomer({
+      name,
+      description,
+      companyName,
+      location,
+    });
+  };
+
+  const actions = {
+    add: true,
+    edit: true,
+    delete: true,
   };
 
   return (
@@ -36,7 +53,16 @@ function Customers() {
       ) : (
         ""
       )}
-      <ReactDataTable data={customerData} title="Customers"></ReactDataTable>
+      <ReactDataTable
+        data={customerData}
+        title="Customers"
+        actions={actions}
+        onAdd={() =>
+          history.push({
+            pathname: "/dashboard",
+          })
+        }
+      ></ReactDataTable>
     </div>
   );
 }

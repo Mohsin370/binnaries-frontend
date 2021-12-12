@@ -1,7 +1,7 @@
 import { environment } from "../environments/environment";
 import Axios from "axios";
 const userData = JSON.parse(localStorage.getItem("userData"));
-const { token, uuid } = userData || {};
+const { token, uuid } = userData;
 
 
 export const LoginApi = (data) => {
@@ -13,7 +13,6 @@ export const SignupAPi = (data) => {
 };
 
 export const GetProfileDetails = () => {
-  console.log(userData);
   return Axios.get(`${environment.BaseURL}/users/${uuid}/getProfile`, {
     headers: { "Authorization": `${token}` },
   });
@@ -57,8 +56,9 @@ export const EditBankAccountAPi = (data) => {
 };
 
 
-export const addCustomers = (data) => {
-  return Axios.post(`${environment.BaseURL}/customers/users/addCustomer`, { data }, {
+export const addCustomer = (data) => {
+  data.user_id = userData.uuid;
+  return Axios.post(`${environment.BaseURL}/customers/addCustomer`, { data }, {
     headers: { "Authorization": `${token}` },
   });
 };
