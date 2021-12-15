@@ -81,4 +81,10 @@ export const getCustomers = () => {
     }
   );
 };
+export const deleteCustomerApi = (customer_id) => {
+  const { token } = getUserInfo();
+  return Axios.post(`${environment.BaseURL}/customers/deleteCustomer`,{customer_id}, {
+    headers: { "Authorization": `${token}` },
+  });
+};
 

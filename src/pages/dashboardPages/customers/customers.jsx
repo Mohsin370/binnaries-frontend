@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DashboardHOC from "../dashboardHOC";
 import ReactDataTable from "../../../components/data_table/dataTable";
-import { getCustomers, addCustomer } from "../../../api/api";
+import { getCustomers, addCustomer, deleteCustomerApi } from "../../../api/api";
 import { Spinner } from "react-bootstrap";
 import { useHistory } from "react-router";
 
@@ -28,14 +28,21 @@ function Customers() {
       });
   };
 
-  const addNewCustomer = (data) => {
-    const { name, description, companyName, location } = data;
-    addCustomer({
-      name,
-      description,
-      companyName,
-      location,
-    });
+  const addCustomerRoute = () => {
+    history.push({
+      pathname: "/dashboard",
+    })
+  };
+  const editCustomerRoute = () => {
+    history.push({
+      pathname: "/dashboard",
+    })
+  };
+  const deleteCustomer = (row) => {
+    console.log(row);
+    deleteCustomerApi(row.id).then((res)=>{
+      getUserCustomers();
+    })
   };
 
   const actions = {
@@ -57,11 +64,9 @@ function Customers() {
         data={customerData}
         title="Customers"
         actions={actions}
-        onAdd={() =>
-          history.push({
-            pathname: "/dashboard",
-          })
-        }
+        onAdd={addCustomerRoute}
+        onEdit={editCustomerRoute}
+        onDelete={deleteCustomer}
       ></ReactDataTable>
     </div>
   );
