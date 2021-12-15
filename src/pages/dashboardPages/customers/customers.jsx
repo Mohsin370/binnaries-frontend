@@ -30,19 +30,18 @@ function Customers() {
 
   const addCustomerRoute = () => {
     history.push({
-      pathname: "/dashboard",
-    })
+      pathname: "/dashboard/customers/add",
+    });
   };
-  const editCustomerRoute = () => {
+  const editCustomerRoute = (row) => {
     history.push({
-      pathname: "/dashboard",
-    })
+      pathname: `/dashboard/customers/${row.id}/edit`,
+    });
   };
   const deleteCustomer = (row) => {
-    console.log(row);
-    deleteCustomerApi(row.id).then((res)=>{
+    deleteCustomerApi(row.id).then((res) => {
       getUserCustomers();
-    })
+    });
   };
 
   const actions = {

@@ -47,8 +47,14 @@ const ReactDataTable = (props) => {
   const ActionButtons = (row) => {
     return (
       <div className="d-flex">
-        {props.actions.edit && <Button className="mr-2" onClick={props.onEdit}>Edit</Button>}
-        {props.actions.delete &&<Button onClick={()=>props.onDelete(row)}>Delete</Button>}
+        {props.actions.edit && (
+          <Button className="mr-2" onClick={() => props.onEdit(row)}>
+            Edit
+          </Button>
+        )}
+        {props.actions.delete && (
+          <Button onClick={() => props.onDelete(row)}>Delete</Button>
+        )}
       </div>
     );
   };

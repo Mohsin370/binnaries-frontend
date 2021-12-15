@@ -66,7 +66,7 @@ export const EditBankAccountAPi = (data) => {
 };
 
 
-export const addCustomer = (data) => {
+export const addCustomerApi = (data) => {
   const { uuid, token } = getUserInfo();
   data.user_id = uuid;
   return Axios.post(`${environment.BaseURL}/customers/addCustomer`, { data }, {
@@ -84,6 +84,12 @@ export const getCustomers = () => {
 export const deleteCustomerApi = (customer_id) => {
   const { token } = getUserInfo();
   return Axios.post(`${environment.BaseURL}/customers/deleteCustomer`,{customer_id}, {
+    headers: { "Authorization": `${token}` },
+  });
+};
+export const getCustomerByIdApi = (customer_id) => {
+  const { token } = getUserInfo();
+  return Axios.get(`${environment.BaseURL}/customers/${customer_id}/getCustomerById`, {
     headers: { "Authorization": `${token}` },
   });
 };

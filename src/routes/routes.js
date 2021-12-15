@@ -11,6 +11,7 @@ import Accounts from '../pages/dashboardPages/accounts/accounts';
 import { connect } from 'react-redux';
 import { GetProfileDetails } from '../api/api';
 import { updateUserDetails } from '../redux/actions/actions';
+import CustomerActions from '../pages/dashboardPages/customers/customerActions/customerActions';
 
 function Routes(props) {
 
@@ -36,6 +37,8 @@ function Routes(props) {
           <Route path="/profile" exact> <Profile></Profile>  </Route>
           <Route path="/dashboard/Analytics" exact> <Analytics></Analytics> </Route>
           <Route path="/dashboard/Customers" exact> <Customers></Customers> </Route>
+          <Route path="/dashboard/Customers/add" exact> <CustomerActions/> </Route>
+          <Route path="/dashboard/Customers/:customer_id/edit" exact> <CustomerActions/> </Route>
           <Route path="/dashboard/Accounts" exact> <Accounts></Accounts> </Route>
           <Route render={() => <Redirect to="/dashboard" />} />
         </Switch>
