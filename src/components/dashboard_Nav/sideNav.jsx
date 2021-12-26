@@ -7,10 +7,10 @@ function sideNav() {
   let navlinkClass = "text-decoration-none  pt-3 pb-3 pl-4 row m-auto";
   let ManagementLinks = [
     { linkName: "Accounts", link: "/dashboard/accounts", icon: faHome },
-    { linkName: "Analytics", link: "/dashboard/analytics", icon: faHome },
+    { linkName: "Products", link: "/dashboard/products", icon: faHome },
     { linkName: "Customers", link: "/dashboard/customers", icon: faHome },
-    { linkName: "Orders", link: "/login", icon: faHome },
-    { linkName: "Products", link: "/login", icon: faHome },
+    { linkName: "Analytics", link: "/dashboard/analytics", icon: faHome },
+    { linkName: "Orders", link: "/dashboard/orders", icon: faHome },
     { linkName: "Invoices", link: "/dashboard/invoices", icon: faHome },
   ];
   let Pages = [
@@ -37,7 +37,7 @@ function sideNav() {
       </Link>
       <Link
         className={[
-          window.location.pathname === "/profile" ? styles.activeLink : "",
+          window.location.pathname.startsWith("/profile") ? styles.activeLink : "",
           navlinkClass,
           styles.NavLinksParent,
         ].join(" ")}
@@ -55,7 +55,7 @@ function sideNav() {
           return (
             <Link
               className={[
-                window.location.pathname === el.link ? styles.activeLink : "",
+                window.location.pathname.startsWith(el.link) ? styles.activeLink : "",
                 navlinkClass,
                 styles.NavLinksParent,
               ].join(" ")}

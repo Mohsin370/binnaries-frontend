@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
 import DashboardHOC from "../dashboardHOC";
 import ReactDataTable from "../../../components/data_table/dataTable";
-import { getCustomers, deleteCustomerApi } from "../../../api/api";
+import { getProducts, deleteProductApi } from "../../../api/api";
 import { Spinner, Button } from "react-bootstrap";
 import { useHistory } from "react-router";
 
-function Customers() {
+function Products() {
   useEffect(() => {
-    getUserCustomers();
+    getUserProducts();
   }, []);
   const [showSpinner, setshowSpinner] = useState(true);
-  const [customerData, setcustomerData] = useState([]);
+  const [productData, setproductData] = useState([]);
   const history = useHistory();
 
-  const getUserCustomers = () => {
-    getCustomers()
+  const getUserProducts = () => {
+    getProducts()
       .then((res) => {
         if (res.data.message === "success") {
-          setcustomerData(res.data.customers);
+          setproductData(res.data.products);
           setshowSpinner(false);
         } else {
           setshowSpinner(false);
@@ -28,19 +28,19 @@ function Customers() {
       });
   };
 
-  const addCustomerRoute = () => {
+  const addProductsRoute = () => {
     history.push({
-      pathname: "/dashboard/customers/add",
+      pathname: "/dashboard/products/add",
     });
   };
-  const editCustomerRoute = (row) => {
+  const editProductsRoute = (row) => {
     history.push({
-      pathname: `/dashboard/customers/${row.id}/edit`,
+      pathname: `/dashboard/products/${row.id}/edit`,
     });
   };
-  const deleteCustomer = (row) => {
-    deleteCustomerApi(row.id).then((res) => {
-      getUserCustomers();
+  const deleteProducts = (row) => {
+    deleteProductApi(row.id).then((res) => {
+      getUserProducts();
     });
   };
 
@@ -54,12 +54,12 @@ function Customers() {
     return (
       <div className="d-flex">
         {actions.edit && (
-          <Button className="mr-2" onClick={() => editCustomerRoute(row)}>
+          <Button className="mr-2" onClick={() => editProductsRoute(row)}>
             Edit
           </Button>
         )}
         {actions.delete && (
-          <Button onClick={() => deleteCustomer(row)}>Delete</Button>
+          <Button onClick={() => deleteProducts(row)}>Delete</Button>
         )}
       </div>
     );
@@ -77,18 +77,6 @@ function Customers() {
       filterable: true,
     },
     {
-      name: "Company Name",
-      selector: "companyName",
-      sortable: true,
-      filterable: true,
-    },
-    {
-      name: "Location",
-      selector: "location",
-      sortable: true,
-      filterable: true,
-    },
-    {
       name: "Description",
       selector: "description",
       sortable: true,
@@ -96,8 +84,8 @@ function Customers() {
     },
     
     {
-      name: "type",
-      selector: "type",
+      name: "Brand",
+      selector: "brand",
       sortable: true,
       filterable: true,
     },
@@ -118,14 +106,14 @@ function Customers() {
         ""
       )}
       <ReactDataTable
-        data={customerData}
-        title="Customers"
+        data={productData}
+        title="Products"
         actions={actions}
-        onAdd={addCustomerRoute}
+        onAdd={addProductsRoute}
         columns={columns}
       ></ReactDataTable>
     </div>
   );
 }
 
-export default DashboardHOC(Customers);
+export default DashboardHOC(Products);

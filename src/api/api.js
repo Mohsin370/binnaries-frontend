@@ -73,6 +73,12 @@ export const addCustomerApi = (data) => {
     headers: { "Authorization": `${token}` },
   });
 };
+export const editCustomerApi = (data) => {
+  const { token } = getUserInfo();
+  return Axios.put(`${environment.BaseURL}/customers/${data.id}/editCustomer`, { data }, {
+    headers: { "Authorization": `${token}` },
+  });
+};
 export const getCustomers = () => {
   const { uuid, token } = getUserInfo();
   return Axios.get(`${environment.BaseURL}/customers/users/${uuid}/getCustomers`,
@@ -93,4 +99,40 @@ export const getCustomerByIdApi = (customer_id) => {
     headers: { "Authorization": `${token}` },
   });
 };
+
+
+export const addProductApi = (data) => {
+  const { uuid, token } = getUserInfo();
+  data.user_id = uuid;
+  return Axios.post(`${environment.BaseURL}/products/addProduct`, { data }, {
+    headers: { "Authorization": `${token}` },
+  });
+};
+export const editProductApi = (data) => {
+  const { token } = getUserInfo();
+  return Axios.put(`${environment.BaseURL}/products/${data.id}/editProduct`, { data }, {
+    headers: { "Authorization": `${token}` },
+  });
+};
+export const getProducts = () => {
+  const { uuid, token } = getUserInfo();
+  return Axios.get(`${environment.BaseURL}/products/users/${uuid}/getProducts`,
+    {
+      headers: { "Authorization": `${token}` },
+    }
+  );
+};
+export const deleteProductApi = (product_id) => {
+  const { token } = getUserInfo();
+  return Axios.post(`${environment.BaseURL}/products/deleteProduct`,{product_id}, {
+    headers: { "Authorization": `${token}` },
+  });
+};
+export const getProductByIdApi = (product_id) => {
+  const { token } = getUserInfo();
+  return Axios.get(`${environment.BaseURL}/products/${product_id}/getProductById`, {
+    headers: { "Authorization": `${token}` },
+  });
+};
+
 
